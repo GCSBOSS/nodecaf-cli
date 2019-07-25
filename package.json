@@ -1,0 +1,50 @@
+{
+    "name": "nodecaf-cli",
+    "version": "0.1.0",
+    "description": "Nodecaf is an Express framework for developing REST APIs in a quick and convenient manner.",
+    "main": "bin/nodecaf.js",
+    "scripts": {
+        "test": "mocha -b --no-diff test/*.js",
+        "coverage": "nyc -r html -r text-summary mocha -b --no-diff --no-warnings test/*.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://gitlab.com/GCSBOSS/nodecaf-cli.git"
+    },
+    "bin": {
+        "nodecaf": "./bin/nodecaf.js"
+    },
+    "keywords": [
+        "express",
+        "promises",
+        "async",
+        "await",
+        "error",
+        "simple",
+        "framework",
+        "scaffolding",
+        "generate",
+        "api",
+        "rest",
+        "nodejs",
+        "server"
+    ],
+    "author": "Guilherme C. Souza",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://gitlab.com/GCSBOSS/nodecaf-cli/issues"
+    },
+    "homepage": "https://gitlab.com/GCSBOSS/nodecaf-cli#README",
+    "dependencies": {
+        "eclipt": "^0.1.2",
+        "ejs": "^2.6.2",
+        "express": "^4.17.1",
+        "mime": "^2.4.4",
+        "yaml": "^1.6.0"
+    },
+    "devDependencies": {
+        "swagger-parser": "^8.0.0",
+        "tempper": "^0.1.1",
+        "wtfnode": "^0.8.0"
+    }
+}
