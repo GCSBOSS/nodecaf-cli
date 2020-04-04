@@ -43,6 +43,8 @@
         "yaml": "^1.8.3"
     },
     "devDependencies": {
+        "muhb": "^3.0.1",
+        "nodecaf": "^0.8.5",
         "swagger-parser": "^8.0.4",
         "tempper": "^0.1.1",
         "wtfnode": "^0.8.1"

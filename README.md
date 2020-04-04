@@ -2,9 +2,10 @@
 
 > Docs for version v0.1.x.
 
-Nodecaf CLI is contains a series of useful tools and code genration for the use
+Nodecaf CLI contains a series of useful tools and code generation for the use
 of [Nodecaf Framework](https://gitlab.com/GCSBOSS/nodecaf).
-Using Nodecaf CLI you'll get:
+Using Nodecaf CLI you'll be able to:
+- [Run your application](#running) via command line or containers.
 - [Generate a basic Nodecaf project structure](#init-project).
 - [Generate an OpenAPI document](#open-api-support) or your APIs.
 
@@ -36,10 +37,23 @@ so we can collaborate effectively.
 ## Manual
 Check a brief description of how to use the available commands.
 
-### Common Commands
+### Common Options
 
 - `-v --version`: Outputs the currently installed version of Nodecaf CLI.
 - `-h --help`: Outputs the complete command reference.
+
+### Run Application
+
+`nodecaf run` Executes the Nodecaf app installed in the specified directory.
+
+**Options**
+
+- `-c --conf [file]`: Conf file path (supports multiple eg.: `-c ./foo.toml -c ./bar.toml`)
+- `-d --delay [milliseconds]`: Time to await before starting the app
+
+**Arguments**
+
+- `APP_PATH`: The path to your app's module directory or main js file.
 
 ### Init Project
 
