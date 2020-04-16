@@ -84,30 +84,23 @@ describe('CLI: nodecaf', () => {
 
     describe('nodecaf run', () => {
         const { callback: run } = require('../lib/cli/run');
-        const { get, request } = require('muhb');
+        const { get } = require('muhb');
         global.AppServer = require('nodecaf').AppServer;
 
         afterEach(function(){
             tmp.refresh();
         });
 
-        it('Should fail when non function is sent', () => {
-            assert.throws(() => run({}, './app'), /Cannot find/);
+        it('Should fail when path is not correct', () => {
+            assert.throws(() => run({}, './app'), /valid nodecaf/);
         });
 
         it('Should run the given app server', async () => {
+            process.env.APP_PATH = './app';
             tmp.addFile('res/app.js', './app.js');
-            run({}, './app');
+            await run({});
             let { body } = await get('http://localhost:3478/bar');
             assert.strictEqual(body, 'foo');
-        });
-
-        it('Should inject the given conf file', async () => {
-            tmp.addFile('res/app.js', './app.js');
-            tmp.addFile('res/conf.toml', './conf.toml');
-            run({ conf: './conf.toml' }, './app');
-            let { body } = await get('http://localhost:3478/bar');
-            assert.strictEqual(body, 'value');
         });
 
         it('Should inject multiple conf files', async () => {
@@ -118,19 +111,6 @@ describe('CLI: nodecaf', () => {
             let { body } = await get('http://localhost:3478/bar');
             await new Promise(done => setTimeout(done, 1200));
             assert.strictEqual(body, 'my-proj');
-        });
-
-        it('Should delay server initialization', async () => {
-            tmp.addFile('res/app.js', './app.js');
-            process.env.APP_PATH = './app.js';
-            run({ delay: 1500 });
-            await assert.rejects(request({
-                url: 'http://localhost:3478/bar',
-                method: 'GET', timeout: 200
-            }));
-            await new Promise(done => setTimeout(done, 1600));
-            let { body } = await get('http://localhost:3478/bar');
-            assert.strictEqual(body, 'foo');
         });
 
     });
