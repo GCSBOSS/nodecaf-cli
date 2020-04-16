@@ -25,12 +25,6 @@ describe('CLI: nodecaf', () => {
             tmp.refresh();
         });
 
-        it('Should fail when unsupported conf type is sent', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            assert.throws( () =>
-                init({ confPath: 'foo', confType: 'baz' }), /type not supported/g );
-        });
-
         it('Should fail when no package.json is found', () => {
             assert.throws( () => init({}), /package.json not found/g);
         });
@@ -71,13 +65,13 @@ describe('CLI: nodecaf', () => {
 
         it('Should generate conf file if specified', () => {
             tmp.addFile('res/nmless-package.json', './package.json');
-            init({ confPath: './conf.toml' });
+            init({ conf: './conf.toml' });
             assertPathExists('./conf.toml');
         });
 
         it('Should generate create conf file dir if it doesn\'t exist', () => {
             tmp.addFile('res/nmless-package.json', './package.json');
-            init({ confPath: './my/conf.toml' });
+            init({ conf: './my/conf.toml' });
             assertPathExists('./my/conf.toml');
         });
     });
