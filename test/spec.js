@@ -38,7 +38,7 @@ describe('CLI: nodecaf', () => {
         it('Should fail when \'lib\' or \'bin\' directories already exist', () => {
             tmp.addFile('res/test-package.json', './package.json');
             tmp.mkdir('bin');
-            assert.throws( () => init({}), /already exists/g);
+            assert.throws( () => init({ bin: true }), /already exists/g);
             fs.rmdirSync('./bin');
             tmp.mkdir('lib');
             assert.throws( () => init({}), /already exists/g);
@@ -49,6 +49,11 @@ describe('CLI: nodecaf', () => {
             init({});
             assertPathExists('./lib/main.js');
             assertPathExists('./lib/api.js');
+        });
+
+        it('Should generate npm bin file', () => {
+            tmp.addFile('res/test-package.json', './package.json');
+            init({ bin: true });
             let pkgInfo = require(tmp.dir + '/package.json');
             assert.equal(pkgInfo.bin['my-proj'], 'bin/my-proj.js');
         });
@@ -57,15 +62,11 @@ describe('CLI: nodecaf', () => {
             tmp.mkdir('foo');
             tmp.addFile('res/nmless-package.json', './foo/package.json');
             init({ path: './foo' });
-            let pkgInfo = require(tmp.dir + '/foo/package.json');
-            assert.equal(pkgInfo.bin['my-app'], 'bin/my-app.js');
         });
 
         it('Should use specified project name', () => {
             tmp.addFile('res/test-package.json', './package.json');
             init({ name: 'proj-foo' });
-            let pkgInfo = require(tmp.dir + '/package.json');
-            assert.equal(pkgInfo.bin['proj-foo'], 'bin/proj-foo.js');
         });
 
         it('Should generate conf file if specified', () => {
