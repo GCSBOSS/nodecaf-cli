@@ -49,7 +49,7 @@ Check a brief description of how to use the available commands.
 **Options**
 
 - `-c --conf [file]`: Conf file path (supports multiple eg.: `-c ./foo.toml -c ./bar.toml`)
-- `-d --delay [milliseconds]`: Time to await before starting the app
+- `-r --reload`: Whether the app should be reloaded upon config or code changes
 
 **Arguments**
 
@@ -65,9 +65,9 @@ directory.
 **Options**
 
 - `-p --path [directory]`: Project root directory (defaults to working dir)
-- `-c --confPath [file]`: Generate a config file and plug it in the structure
+- `-c --conf [file]`: Path to a default config file relative to project root
 - `-n --name [string]`: A name/title for the generated app structure
-- `--confType (yaml | toml)`: The type for the generated config file
+- `--bin`: When present will generate a npm binary file to run the app
 
 ### Open API Support
 
