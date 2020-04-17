@@ -25,12 +25,6 @@ describe('CLI: nodecaf', () => {
             tmp.refresh();
         });
 
-        it('Should fail when unsupported conf type is sent', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            assert.throws( () =>
-                init({ confPath: 'foo', confType: 'baz' }), /type not supported/g );
-        });
-
         it('Should fail when no package.json is found', () => {
             assert.throws( () => init({}), /package.json not found/g);
         });
@@ -38,7 +32,7 @@ describe('CLI: nodecaf', () => {
         it('Should fail when \'lib\' or \'bin\' directories already exist', () => {
             tmp.addFile('res/test-package.json', './package.json');
             tmp.mkdir('bin');
-            assert.throws( () => init({}), /already exists/g);
+            assert.throws( () => init({ bin: true }), /already exists/g);
             fs.rmdirSync('./bin');
             tmp.mkdir('lib');
             assert.throws( () => init({}), /already exists/g);
@@ -49,6 +43,11 @@ describe('CLI: nodecaf', () => {
             init({});
             assertPathExists('./lib/main.js');
             assertPathExists('./lib/api.js');
+        });
+
+        it('Should generate npm bin file', () => {
+            tmp.addFile('res/test-package.json', './package.json');
+            init({ bin: true });
             let pkgInfo = require(tmp.dir + '/package.json');
             assert.equal(pkgInfo.bin['my-proj'], 'bin/my-proj.js');
         });
@@ -57,56 +56,45 @@ describe('CLI: nodecaf', () => {
             tmp.mkdir('foo');
             tmp.addFile('res/nmless-package.json', './foo/package.json');
             init({ path: './foo' });
-            let pkgInfo = require(tmp.dir + '/foo/package.json');
-            assert.equal(pkgInfo.bin['my-app'], 'bin/my-app.js');
         });
 
         it('Should use specified project name', () => {
             tmp.addFile('res/test-package.json', './package.json');
             init({ name: 'proj-foo' });
-            let pkgInfo = require(tmp.dir + '/package.json');
-            assert.equal(pkgInfo.bin['proj-foo'], 'bin/proj-foo.js');
         });
 
         it('Should generate conf file if specified', () => {
             tmp.addFile('res/nmless-package.json', './package.json');
-            init({ confPath: './conf.toml' });
+            init({ conf: './conf.toml' });
             assertPathExists('./conf.toml');
         });
 
         it('Should generate create conf file dir if it doesn\'t exist', () => {
             tmp.addFile('res/nmless-package.json', './package.json');
-            init({ confPath: './my/conf.toml' });
+            init({ conf: './my/conf.toml' });
             assertPathExists('./my/conf.toml');
         });
     });
 
     describe('nodecaf run', () => {
         const { callback: run } = require('../lib/cli/run');
-        const { get, request } = require('muhb');
+        const { get } = require('muhb');
         global.AppServer = require('nodecaf').AppServer;
 
         afterEach(function(){
             tmp.refresh();
         });
 
-        it('Should fail when non function is sent', () => {
-            assert.throws(() => run({}, './app'), /Cannot find/);
+        it('Should fail when path is not correct', () => {
+            assert.throws(() => run({}, './app'), /valid nodecaf/);
         });
 
         it('Should run the given app server', async () => {
+            process.env.APP_PATH = './app';
             tmp.addFile('res/app.js', './app.js');
-            run({}, './app');
+            await run({});
             let { body } = await get('http://localhost:3478/bar');
             assert.strictEqual(body, 'foo');
-        });
-
-        it('Should inject the given conf file', async () => {
-            tmp.addFile('res/app.js', './app.js');
-            tmp.addFile('res/conf.toml', './conf.toml');
-            run({ conf: './conf.toml' }, './app');
-            let { body } = await get('http://localhost:3478/bar');
-            assert.strictEqual(body, 'value');
         });
 
         it('Should inject multiple conf files', async () => {
@@ -117,19 +105,6 @@ describe('CLI: nodecaf', () => {
             let { body } = await get('http://localhost:3478/bar');
             await new Promise(done => setTimeout(done, 1200));
             assert.strictEqual(body, 'my-proj');
-        });
-
-        it('Should delay server initialization', async () => {
-            tmp.addFile('res/app.js', './app.js');
-            process.env.APP_PATH = './app.js';
-            run({ delay: 1500 });
-            await assert.rejects(request({
-                url: 'http://localhost:3478/bar',
-                method: 'GET', timeout: 200
-            }));
-            await new Promise(done => setTimeout(done, 1600));
-            let { body } = await get('http://localhost:3478/bar');
-            assert.strictEqual(body, 'foo');
         });
 
     });
