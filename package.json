@@ -36,7 +36,7 @@
     },
     "homepage": "https://gitlab.com/GCSBOSS/nodecaf-cli#README",
     "dependencies": {
-        "eclipt": "^0.1.4",
+        "eclipt": "^0.1.5",
         "ejs": "^2.7.4",
         "express": "^4.17.1",
         "mime": "^2.4.4",
