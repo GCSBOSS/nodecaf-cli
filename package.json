@@ -1,6 +1,6 @@
 {
     "name": "nodecaf-cli",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Nodecaf is a framework on top of Express for building RESTful services in a quick and convenient manner.",
     "main": "bin/nodecaf.js",
     "scripts": {
