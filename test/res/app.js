@@ -4,6 +4,7 @@ module.exports = function init(){
 
     app.api(function({ get }){
         get('/bar', function({ res, conf }){
+            res.set('Content-Type', 'text/plain');
             res.end(conf.name || conf.key || 'foo');
             this.stop();
         });

@@ -36,16 +36,16 @@
     },
     "homepage": "https://gitlab.com/GCSBOSS/nodecaf-cli#README",
     "dependencies": {
-        "eclipt": "^0.1.5",
-        "ejs": "^2.7.4",
+        "eclipt": "^0.1.6",
+        "ejs": "^3.1.2",
         "express": "^4.17.1",
         "mime": "^2.4.4",
-        "nodecaf-run": "0.0.2",
-        "yaml": "^1.8.3"
+        "nodecaf-run": "0.0.3",
+        "yaml": "^1.9.2"
     },
     "devDependencies": {
-        "muhb": "^3.0.1",
-        "swagger-parser": "^8.0.4",
+        "muhb": "^3.0.3",
+        "swagger-parser": "^9.0.1",
         "tempper": "^0.1.1",
         "wtfnode": "^0.8.1"
     }
