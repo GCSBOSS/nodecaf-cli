@@ -46,6 +46,7 @@
     },
     "devDependencies": {
         "muhb": "^3.0.3",
+        "nodecaf": "^0.9.1",
         "swagger-parser": "^9.0.1",
         "tempper": "^0.1.1",
         "wtfnode": "^0.8.1"

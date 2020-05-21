@@ -25,55 +25,41 @@ describe('CLI: nodecaf', () => {
             tmp.refresh();
         });
 
-        it('Should fail when no package.json is found', () => {
-            assert.throws( () => init({}), /package.json not found/g);
+        it('Should fail when no name is sent', function() {
+            assert.throws(() => init(), /init <name>/g);
         });
 
-        it('Should fail when \'lib\' or \'bin\' directories already exist', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            tmp.mkdir('bin');
-            assert.throws( () => init({ bin: true }), /already exists/g);
-            fs.rmdirSync('./bin');
-            tmp.mkdir('lib');
-            assert.throws( () => init({}), /already exists/g);
-        });
-
-        it('Should generate basic structure files', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            init({});
+        it('Should generate basic structure files', function() {
+            this.timeout(5000);
+            init({}, 'test');
             assertPathExists('./lib/main.js');
             assertPathExists('./lib/api.js');
+            assertPathExists('./package.json');
         });
 
-        it('Should generate npm bin file', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            init({ bin: true });
-            let pkgInfo = require(tmp.dir + '/package.json');
-            assert.equal(pkgInfo.bin['my-proj'], 'bin/my-proj.js');
+        it('Should generate npm bin file', function() {
+            this.timeout(5000);
+            tmp.mkdir('test/lib');
+            tmp.addFile('res/t-package.json', './test/package.json');
+            tmp.addFile('res/app.js', './test/lib/main.js');
+            tmp.addFile('res/api.js', './test/lib/api.js');
+            init({ bin: true }, 'test');
+            let pkgInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+            assert.equal(pkgInfo.bin['test'], 'bin/test.js');
         });
 
-        it('Should target specified directory', () => {
-            tmp.mkdir('foo');
-            tmp.addFile('res/nmless-package.json', './foo/package.json');
-            init({ path: './foo' });
+        it('Should target specified directory', function() {
+            this.timeout(5000);
+            init({ path: './foo' }, 'test');
+            assertPathExists('./package.json');
         });
 
-        it('Should use specified project name', () => {
-            tmp.addFile('res/test-package.json', './package.json');
-            init({ name: 'proj-foo' });
+        it('Should generate conf file if specified', function() {
+            this.timeout(5000);
+            init({ conf: './conf.toml' }, 'test');
+            assertPathExists('./lib/conf.toml');
         });
 
-        it('Should generate conf file if specified', () => {
-            tmp.addFile('res/nmless-package.json', './package.json');
-            init({ conf: './conf.toml' });
-            assertPathExists('./conf.toml');
-        });
-
-        it('Should generate create conf file dir if it doesn\'t exist', () => {
-            tmp.addFile('res/nmless-package.json', './package.json');
-            init({ conf: './my/conf.toml' });
-            assertPathExists('./my/conf.toml');
-        });
     });
 
     describe('nodecaf run', () => {

@@ -57,10 +57,8 @@ Check a brief description of how to use the available commands.
 
 ### Init Project
 
-`nodecaf init` Generates a skelleton Nodecaf project file structure in the current
+`nodecaf init` Generates a base Nodecaf project file structure in the current
 directory.
-
-> You must already have a well-formed package.json in the target directory.
 
 **Options**
 
@@ -68,6 +66,10 @@ directory.
 - `-c --conf [file]`: Path to a default config file relative to project root
 - `-n --name [string]`: A name/title for the generated app structure
 - `--bin`: When present will generate a npm binary file to run the app
+
+**Arguments**
+
+- `APP_NAME`: The name to be used for the app all across the generated files.
 
 ### Open API Support
 
