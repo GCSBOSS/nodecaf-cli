@@ -64,8 +64,8 @@ directory.
 
 - `-p --path [directory]`: Project root directory (defaults to working dir)
 - `-c --conf [file]`: Path to a default config file relative to project root
-- `-n --name [string]`: A name/title for the generated app structure
 - `--bin`: When present will generate a npm binary file to run the app
+- `--bare`: When present will generate only js files
 
 **Arguments**
 

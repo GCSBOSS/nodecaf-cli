@@ -43,6 +43,8 @@ describe('CLI: nodecaf', () => {
             tmp.addFile('res/t-package.json', './test/package.json');
             tmp.addFile('res/app.js', './test/lib/main.js');
             tmp.addFile('res/api.js', './test/lib/api.js');
+            tmp.addFile('res/Dockerfile', './test/Dockerfile');
+            tmp.addFile('../.eslintrc.yml', './test/.eslintrc.yml');
             init({ bin: true }, 'test');
             let pkgInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
             assert.equal(pkgInfo.bin['test'], 'bin/test.js');
@@ -58,6 +60,12 @@ describe('CLI: nodecaf', () => {
             this.timeout(5000);
             init({ conf: './conf.toml' }, 'test');
             assertPathExists('./lib/conf.toml');
+        });
+
+        it('Should only generate main files', function() {
+            this.timeout(5000);
+            init({ bare: true }, 'test');
+            assert(!fs.existsSync('./Dockerfile'));
         });
 
     });
