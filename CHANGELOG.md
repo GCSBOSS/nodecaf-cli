@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.0] - 2020-08-10
+
+### Added
+- support to Nodecaf v0.10.x interface
+
+### Removed
+- support to Nodecaf apps of v0.9.x and below
+
 ## [v0.3.0] - 2020-05-21
 
 ### Added
@@ -85,3 +93,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.3]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.2.3
 [v0.2.4]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.2.4
 [v0.3.0]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.3.0
+[v0.4.0]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.4.0

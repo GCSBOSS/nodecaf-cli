@@ -1,6 +1,6 @@
 # [Nodecaf CLI](https://gitlab.com/GCSBOSS/nodecaf-cli)
 
-> Docs for version v0.1.x.
+> Docs for version v0.4.x.
 
 Nodecaf CLI contains a series of useful tools and code generation for the use
 of [Nodecaf Framework](https://gitlab.com/GCSBOSS/nodecaf).
