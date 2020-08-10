@@ -73,7 +73,7 @@ describe('CLI: nodecaf', () => {
     describe('nodecaf run', () => {
         const { callback: run } = require('../lib/cli/run');
         const { get } = require('muhb');
-        global.AppServer = require('nodecaf').AppServer;
+        global.Nodecaf = require('nodecaf');
 
         afterEach(function(){
             tmp.refresh();
