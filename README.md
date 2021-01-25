@@ -49,7 +49,7 @@ Check a brief description of how to use the available commands.
 **Options**
 
 - `-c --conf [file]`: Conf file path (supports multiple eg.: `-c ./foo.toml -c ./bar.toml`)
-- `-r --reload`: Whether the app should be reloaded upon config or code changes
+- `-r --reload`: Whether the app should be reloaded upon code changes
 
 **Arguments**
 

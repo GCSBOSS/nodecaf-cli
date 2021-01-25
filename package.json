@@ -43,16 +43,15 @@
         "eclipt": "^0.1.6",
         "ejs": "^3.1.5",
         "express": "^4.17.1",
-        "mime": "^2.4.6",
+        "mime": "^2.5.0",
         "nodecaf-run": "^0.1.1",
         "yaml": "^1.10.0"
     },
     "devDependencies": {
         "muhb": "^3.0.4",
-        "nodecaf": "^0.11.0",
+        "nodecaf": "^0.11.4",
         "swagger-parser": "^9.0.1",
         "tempper": "^0.1.1",
-        "toml": "^3.0.0",
-        "wtfnode": "^0.8.3"
+        "toml": "^3.0.0"
     }
 }
