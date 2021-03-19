@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0] - 2021-03-19
+
+### Added
+- `--mongo` to `init` for installing mongo dependency and generating init code
+- `--redis` for `init` installing redis dependency and generating init code
+
+### Fixed
+- `init` file generation to write CRLF instead of LF
+
+### Changed
+- `init --conf` to install config dependencies of the given format
+
+### Removed
+- `init --conf` behavior of generating default config file and code
+
 ## [v0.4.2] - 2021-01-25
 
 ### Removed
@@ -104,3 +119,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.4]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.2.4
 [v0.3.0]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.3.0
 [v0.4.0]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.4.0
+[v0.4.1]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.4.1
+[v0.4.2]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.4.2
+[v0.5.0]: https://gitlab.com/GCSBOSS/nodecaf-cli/-/tags/v0.5.0
