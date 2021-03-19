@@ -29,6 +29,10 @@ describe('CLI: nodecaf', () => {
             assert.throws(() => init(), /init <name>/g);
         });
 
+        it('Should fail when bad config type is sent', function() {
+            assert.throws(() => init({ conf: 'bad' }, 'test'), /--conf/g);
+        });
+
         it('Should generate basic structure files', function() {
             this.timeout(5000);
             init({}, 'test');
@@ -58,9 +62,11 @@ describe('CLI: nodecaf', () => {
 
         it('Should generate conf file if specified', function() {
             this.timeout(5000);
-            init({ conf: './conf.toml' }, 'test');
-            assertPathExists('./lib/conf.toml');
+            init({ conf: 'toml' }, 'test');
+            let pkgInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+            assert('toml' in pkgInfo.dependencies);
         });
+
 
         it('Should only generate main files', function() {
             this.timeout(5000);

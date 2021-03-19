@@ -62,10 +62,10 @@ directory.
 
 **Options**
 
-- `-p --path [directory]`: Project root directory (defaults to working dir)
-- `-c --conf [file]`: Path to a default config file relative to project root
-- `--bin`: When present will generate a npm binary file to run the app
 - `--bare`: When present will generate only js files
+- `--bin`: When present will generate a npm binary file to run the app
+- `-c --conf`: Type of config file to be used in the project
+- `-p --path [directory]`: Project root directory (defaults to working dir)
 
 **Arguments**
 
