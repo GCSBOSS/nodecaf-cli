@@ -66,6 +66,8 @@ directory.
 - `--bin`: When present will generate a npm binary file to run the app
 - `-c --conf`: Type of config file to be used in the project
 - `-p --path [directory]`: Project root directory (defaults to working dir)
+- `--mongo`: When present will install and generate code for mongo integration
+- `--redis`: When present will install and generate code for redis integration
 
 **Arguments**
 

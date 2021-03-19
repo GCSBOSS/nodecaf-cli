@@ -67,6 +67,19 @@ describe('CLI: nodecaf', () => {
             assert('toml' in pkgInfo.dependencies);
         });
 
+        it('Should install redis if specified', function() {
+            this.timeout(5000);
+            init({ redis: true }, 'test');
+            let pkgInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+            assert('nodecaf-redis' in pkgInfo.dependencies);
+        });
+
+        it('Should install mongo if specified', function() {
+            this.timeout(5000);
+            init({ mongo: true }, 'test');
+            let pkgInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+            assert('nodecaf-mongo' in pkgInfo.dependencies);
+        });
 
         it('Should only generate main files', function() {
             this.timeout(5000);
